@@ -21,8 +21,8 @@ export default function Login() {
       if (isLogin) {
         await login(email, password);
       } else {
-        const res = await authAPI.signup(email, password);
-        await login(email, password); // just to set token if signup doesn't set it in context but wait context has signup
+        await authAPI.signup(email, password);
+        await login(email, password); 
       }
       navigate("/dashboard");
     } catch (err: any) {

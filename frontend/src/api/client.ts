@@ -1,5 +1,5 @@
-const API_BASE_URL = "http://localhost:5001/api";
-
+// https://focus-forge-shxn.vercel.app/
+const API_BASE_URL = "https://focus-forge-shxn.vercel.app/api";
 type RequestOptions = {
   method?: string;
   body?: Record<string, unknown> | unknown[];
@@ -21,6 +21,7 @@ export const apiRequest = async (endpoint: string, options: RequestOptions = {})
 };
 
 export const authAPI = {
+  signup: (email: string, password: string) => apiRequest("/auth/signup", { method: "POST", body: { email, password } }),
   login: (email: string, password: string) => apiRequest("/auth/login", { method: "POST", body: { email, password } }),
   getMe: (token: string) => apiRequest("/auth/me", { token }),
 };

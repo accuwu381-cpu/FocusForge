@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import './styles/global.css';
@@ -10,14 +11,14 @@ import Breakdown from './pages/Breakdown';
 import FocusSession from './pages/FocusSession';
 import Reflection from './pages/Reflection';
 
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { token, isLoading } = useAuth();
   if (isLoading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
   if (!token) return <Navigate to="/login" />;
   return children;
 };
 
-const PublicRoute = ({ children }: { children: JSX.Element }) => {
+const PublicRoute = ({ children }: { children: React.ReactNode }) => {
   const { token, isLoading } = useAuth();
   if (isLoading) return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
   if (token) return <Navigate to="/dashboard" />;
